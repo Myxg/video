@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}
+    赛事信息录入
+{% endblock %}
+{% block ext_css %}
+<style>
+    #top{
+        display: none;
+    }
+    #content{
+        height: 100%;
+    }
+    #back1{
+        margin-left: 25%;
+    }
+    #inputbox {
+				margin: 0px auto;
+				width: 50%;
+				height: 60%;
+				background-color: #fff;
+				text-align: center;
+				border-radius: 15px;
+				border: 2px #fff solid;
+				box-shadow: 10px 10px 5px #000000;
+            }
+            #inputbox button{
+                margin-top: 20px;
+            }
+            #inputbox:hover {
+				border: 2px #fff solid;
+			}
+
+			input {
+				margin-top: 30px;
+				outline-style: none;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 13px 14px;
+				width: 70%;
+				font-size: 16px;
+				font-weight: 700;
+				font-family: "Microsoft soft";
+			}
+    @media screen and (max-width: 500px) {
+        #content{
+            height: 100%;
+            width: 100%;
+        }
+        #inputbox{
+            width: 99%;
+        }
+        #back1{
+        margin-left: 0%;
+        }
+
+    }
+</style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+
+    <div id="inputbox">
+        <div class="title">录入</div>
+        <form method="post" class="input">
+            <input type="text" name="name" id="name" placeholder="赛事名" />
+            <br>
+            <input type="text" name="img" id="img" placeholder="赛事图标链接" />
+            <br>
+            <input type="text" name="start_time" id="start_time" placeholder="开始时间: 2020-03-11" />
+            <br>
+            <input type="text" name="end_time" id="end_time"placeholder="结束时间: 2020-03-15" />
+            <br>
+
+            <button><a>提交</a></button>
+            <a id="back1" href="/matchlist/"><button type="button" onClick=“submitAction();return false;”>返回</button></a>
+        </form>
+    </div>
+
+    {% for ht in ll %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+{% endblock %}

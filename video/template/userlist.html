@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}
+    用户列表
+{% endblock %}
+{% block ext_css %}
+
+<style>
+    #content {
+				margin: 0px auto;
+				width: 100%;
+				height: 0;
+
+
+	}
+    #top{
+            display: none;
+    }
+    #userlist {
+				margin: 5px auto;
+				width: 50%;
+				height: 92%;
+				background-color: #fff;
+                text-align: center;
+<!--				border-radius: 15px;-->
+<!--				border: 2px #fff solid;-->
+<!--				box-shadow: 10px 10px 5px #000000;-->
+    }
+    .uli{
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+        height: 50px;
+        font-size: 20px;
+    }
+    #uname{
+        width: 40%;
+        float: left;
+        border-right: 1px dashed black;
+    }
+    #upow{
+        width: 40%;
+        float: left;
+
+    }
+
+    #userlist button{
+                margin-top: 0px;
+                margin-left: 0%;
+				border: none;
+				color: #000;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 16px;
+				border-radius: 15px;
+				background-color: #CCCCCC;
+    }
+    @media screen and (max-width: 500px) {
+        #userlist{
+            width: 98%;
+        }
+        #uname{
+            width: 49%;
+        }
+        #upow{
+            width: 49%;
+        }
+
+    }
+
+</style>
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+
+    <div id="userlist">
+        <button style="float:left;">用户列表</button>
+        <a href="/logon/" style="float:right;"><button>添加用户</button></a>
+        <br>
+        <br>
+        <br>
+        {% for i in userlist %}
+        <div class="uli"><p id="uname">{{i.username}}</p><p id="upow">{{i.pow}}</p></div>
+        {% endfor %}
+
+
+    </div>
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+
+{% endblock %}

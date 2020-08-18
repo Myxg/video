@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}
+    视频搜索
+{% endblock %}
+{% block ext_css %}
+<style>
+.item {
+    overflow: hidden;
+    background: #ccc;
+    border-bottom: 3px solid #fff;
+    padding-left: 300px;
+    color: 000;
+    height: 14%;
+    text-align: center;
+}
+#lsearchbox{
+    height:9%;
+}
+
+.fl {
+    float: left;
+}
+.content {
+    padding-top: 50px;
+    font-size: 30px;
+}
+.name {
+    margin-bottom: 30px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #EEE5DE;
+    font-size:15px;
+}
+@media screen and (max-width: 500px){
+
+    #box .herf_box {
+        height:20%;
+        padding-left: 0;
+    }
+
+    .content {
+        width: 100%;
+        padding-top: 20px;
+        font-size: 25px;
+        margin-left: -130px;
+    }
+    .item {
+        margin-left: 0px;
+    }
+}
+</style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+    <div id="lsearchbox">
+<!--        <form class="input" method="post">-->
+<!--            <input style="display:none" type="text" name="username" value="{{request.session.userid}}">-->
+<!--            <input type="text" name="content" id="search_input" placeholder="全英 女单" />-->
+<!--            <button><a>搜索</a></button>-->
+<!--        </form>-->
+    </div>
+    <a href="/list/?name={{name}}&year={{year}}&project=男单">
+        <div class="item">
+            <div class="fl content">
+                    <p class="name">男单</p>
+            </div>
+        </div>
+    </a>
+    <a href="/list/?name={{name}}&year={{year}}&project=女单">
+        <div class="item">
+            <div class="fl content">
+                    <p class="name">女单</p>
+            </div>
+        </div>
+    </a>
+    <a href="/list/?name={{name}}&year={{year}}&project=男双">
+        <div class="item">
+            <div class="fl content">
+                    <p class="name">男双</p>
+            </div>
+        </div>
+    </a>
+    <a href="/list/?name={{name}}&year={{year}}&project=女双">
+        <div class="item">
+            <div class="fl content">
+                    <p class="name">女双</p>
+            </div>
+        </div>
+    </a>
+    <a href="/list/?name={{name}}&year={{year}}&project=混双">
+        <div class="item">
+            <div class="fl content">
+                    <p class="name">混双</p>
+            </div>
+        </div>
+    </a>
+
+
+
+    {% for ht in ll %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+
+{% endblock %}

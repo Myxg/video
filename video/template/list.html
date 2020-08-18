@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+{% block title %}
+    视频列表
+{% endblock %}
+{% block ext_css %}
+
+<style>
+
+#listbox {
+
+				width: 100%;
+				height: 100%;
+				background-color: #fff;
+
+			}
+    #lsearchbox{
+        width:10%;
+    }
+    .abc{
+        width: 25%;
+        margin-top: 55px;
+        float: left;
+        margin-left: 120px;
+        height:220px;
+        border-radius: 15px;
+		border: 1px #fff solid;
+		box-shadow: 10px 10px 5px #CCCCCC;
+    }
+    #video{
+        width: 220px;
+        height: 150px;
+    }
+    .con {
+        width: 100%;
+        height:33%;
+        font-size: 15px;
+    }
+    a:hover{
+				color: #000;
+    }
+    ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #EEE5DE;
+    font-size:15px;
+    }
+    @media screen and (max-width: 1400px) {
+        #content{
+            height: 0%;
+        }
+        .abc{
+            width: 25%;
+            margin-top: 45px;
+            float: left;
+            margin-left: 80px;
+            height:190px;
+            border-radius: 15px;
+            border: 1px #fff solid;
+            box-shadow: 10px 10px 5px #CCCCCC;
+        }
+        #video{
+            width: 150px;
+            height: 120px;
+        }
+        .con {
+            width: 100%;
+            height:30%;
+            font-size: 13px;
+        }
+        .con p{
+            margin: 10px auto;
+        }
+    }
+
+
+    @media screen and (max-width: 1024px) {
+        #content{
+            height: 0%;
+        }
+        .abc{
+            width: 30%;
+            margin-top: 45px;
+            float: left;
+            margin-left: 30px;
+            height:190px;
+            border-radius: 15px;
+            border: 1px #fff solid;
+            box-shadow: 10px 10px 5px #CCCCCC;
+        }
+        #video{
+            width: 150px;
+            height: 120px;
+        }
+        .con {
+            width: 100%;
+            height:30%;
+            font-size: 13px;
+        }
+        .con p{
+            margin: 10px auto;
+        }
+    }
+    @media screen and (max-width: 768px) {
+        #content{
+            height: 0%;
+        }
+        .abc{
+            width: 30%;
+            margin-top: 45px;
+            float: left;
+            margin-left: 20px;
+            height:180px;
+            border-radius: 15px;
+            border: 1px #fff solid;
+            box-shadow: 10px 10px 5px #CCCCCC;
+        }
+        #video{
+            width: 150px;
+            height: 120px;
+        }
+        .con {
+            width: 100%;
+            height:30%;
+            font-size: 10px;
+        }
+        .con p{
+            margin: -5px auto;
+        }
+    }
+    @media screen and (max-width: 500px) {
+        #content{
+            height: 0%;
+        }
+        .abc {
+            width: 98%;
+            height: 180px;
+            margin-left: 0px;
+            margin-top:40px;
+            padding-left: 0px;
+            float: left;
+        }
+        #video{
+            margin-top:20px;
+            margin-left: -180px;
+            width: 40%;
+            height: 80%;
+        }
+        .con {
+            margin-top:-125px;
+            margin-left:170px;
+            width: 50%;
+            height: 200px;
+            font-size: 21px;
+        }
+        .con p{
+            margin: 10px auto;
+        }
+        .mi {
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+    }
+</style>
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+
+    <div id="listbox">
+        <div id="lsearchbox" style="height: 50px;margin-top:-11px;">
+<!--                <form class="input" method="post">-->
+<!--                    <input style="display:none" type="text" name="username" value="{{request.session.userid}}"">-->
+<!--                    <input type="text" name="content" id="search_input" placeholder="全英 女单" />-->
+<!--                    <button><a>搜索</a></button>-->
+<!--                </form>-->
+            </div>
+        {% for i in listb %}
+        <a class="abc" href="{{i.icon}}">
+            <!--<img src="https://bwfbadminton.com/wp-content/uploads/sites/3/2018/01/BWF_Coorporate-01-1.svg">-->
+            <video id="video" preload="Auto" src="{{i.icon}}">
+                <!--<source src="{{i.icon}}">-->
+            </video>
+<!--            <div id="output" style="display: none;"></div>-->
+            <div class="con">
+                <p><div class="mi">{{i.name_a1}}{{i.name_a2}}</div>vs<div class="mi">{{i.name_b1}}{{i.name_b2}}</div></p>
+                <!--<p>{{i.rotation}}</p>-->
+                <!--<p>{{i.score1}}vs{{i.score2}}</p>-->
+<!--                <p>{{i.score}}</p>-->
+<!--                <p>{{i.result}}</p>-->
+<!--                <p>{{i.match}}</p>-->
+            </div>
+        </a>
+        {% endfor %}
+
+
+    </div>
+{% endblock %}
+
+
+
+{% block ext_js %}
+<!--<script type="text/javascript">-->
+<!--(function(){-->
+<!--var video, output;-->
+<!--output = document.getElementById("output");-->
+<!--var canvas = document.createElement('canvas')-->
+   <!--var img = document.createElement("img");-->
+  <!--video = document.getElementById('video')-->
+  <!--video.setAttribute('crossOrigin', 'anonymous')-->
+  <!--canvas.width = video.clientWidth-->
+  <!--canvas.height = video.clientHeight-->
+  <!--video.onloadeddata = (() => {-->
+    <!--canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)-->
+    <!--var dataURL = canvas.toDataURL('image/png')-->
+       <!--img.src = dataURL;-->
+    <!--img.width = 400;-->
+    <!--img.height = 300;-->
+    <!--output.appendChild(img);-->
+  <!--})-->
+
+<!--})();-->
+<!--</script>-->
+
+{% endblock %}

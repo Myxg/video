@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+    视频信息录入
+{% endblock %}
+{% block ext_css %}
+<style>
+    #top{
+        display: none;
+    }
+    #content{
+        height: 100%;
+    }
+    @media screen and (max-width: 500px) {
+        #content{
+            height: 110%;
+        }
+
+    }
+</style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+    <div id="inputbox">
+        <div class="title">录入</div>
+        <form method="post" class="input">
+            <input type="text" name="name_a" id="name_a" placeholder="球员a中文名" />
+            <br>
+            <input type="text" name="name_b" id="name_b" placeholder="球员b中文名" />
+            <br>
+            <input type="text" name="project" id="project" placeholder="项目" />
+            <br>
+            <input type="text" name="icon" id="icon"placeholder="视频链接" />
+            <br>
+            <input type="text" name="content_a" id="content_a" placeholder="球员a英文名" />
+            <br>
+            <input type="text" name="content_b" id="content_b" placeholder="球员b英文名" />
+            <br>
+            <input type="text" name="score1" id="score1" placeholder="球员a比分" />
+            <br>
+            <input type="text" name="score2" id="score2" placeholder="球员b比分" />
+            <br>
+            <input type="text" name="game_score" id="game_score" placeholder="每局比分" />
+            <br>
+            <input type="text" name="rotation" id="rotation" placeholder="轮次" />
+            <br>
+            <input type="text" name="match" id="match" placeholder="赛事" />
+            <br>
+            <input type="date" name="date" id="date" placeholder="比赛时间" />
+            <br>
+            <input type="text" name="match_pow" id="match_pow" placeholder="视频权限" />
+            <br>
+            <button><a>提交</a></button>
+            <a id="back1" href="/matchlist/"><button type="button">返回</button></a>
+        </form>
+    </div>
+
+    {% for ht in ll %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+{% endblock %}

@@ -1,0 +1,239 @@
+{% load static from staticfiles %}
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+        <style type="text/css">
+			* {
+				margin: 0px;
+            }
+            #box::-webkit-scrollbar {
+                display: none;
+            }
+            body{
+                height: 100vh;
+
+            }
+            a{
+                text-decoration:none;
+                color: #000;
+            }
+            a:hover{
+				color: #fff;
+            }
+            .title {
+				line-height: 58px;
+				margin-top: 20px;
+				font-size: 36px;
+				color: #000;
+				height: 58px;
+			}
+			#content {
+				margin: 0px auto;
+				width: 100%;
+				height: 100%;
+				border: 1px transparent solid;
+				background-color: rgb(216, 210, 210);
+
+			}
+			#back{
+			    float:right;
+			}
+
+			#searchbox {
+				margin: 0px auto;
+				width: 100%;
+				height: 15%;
+				background-color: #fff;
+				text-align: center;
+				border-radius: 15px;
+				border: 1px #fff solid;
+				<!--box-shadow: 10px 10px 5px #000000;-->
+
+
+            }
+            #searchbox input{
+                line-height: 30px;
+                margin-top: 20px;
+				outline-style: none;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 13px 14px;
+				width: 70%;
+				font-size: 14px;
+				font-weight: 700;
+				font-family: "Microsoft soft";
+            }
+            @media screen and (max-width: 500px) {
+            #searchbox {width: 100%;
+                    height: 10%;
+                }
+            #searchbox input{
+                    margin-top: 10px;
+                }
+            }
+            #logonbox {
+				margin: 160px auto;
+				width: 35%;
+				height: 50%;
+				background-color: #fff;
+				text-align: center;
+				border-radius: 30px;
+				border: 2px #fff solid;
+				box-shadow: 10px 10px 5px #000000;
+            }
+            #loginbox {
+				margin: 200px auto;
+				width: 35%;
+				height: 50%;
+				background-color: #fff;
+				text-align: center;
+				border-radius: 30px;
+				border: 2px #fff solid;
+				box-shadow: 10px 10px 5px #000000;
+            }
+            #listbox {
+				margin: 10px auto;
+				width: 100%;
+				height: 100%;
+				background-color: #fff;
+				text-align: center;
+
+			}
+
+
+			button {
+                margin-top: 0px;
+                margin-right: 0px;
+				border: none;
+				color: #000;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				border-radius: 15px;
+				background-color: #CCCCCC;
+			}
+
+			#user {
+				width: 100%;
+				height: 60px;
+				font-size: 30px;
+				background-color: #CCCCCC;
+            }
+            #user button{
+                margin-right: 0px;
+            }
+
+            #inputbox {
+				margin: 5px auto;
+				width: 50%;
+				height: 92%;
+				background-color: #fff;
+				text-align: center;
+				border-radius: 15px;
+				border: 2px #fff solid;
+				box-shadow: 10px 10px 5px #000000;
+            }
+            #inputbox button{
+                margin-top: 10px;
+            }
+            #inputbox:hover {
+				border: 2px #fff solid;
+			}
+
+			input {
+				margin-top: 5px;
+				outline-style: none;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 13px 14px;
+				width: 70%;
+				font-size: 14px;
+				font-weight: 700;
+				font-family: "Microsoft soft";
+			}
+
+			button {
+				margin-top: 0px;
+				border: none;
+				color: #000;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				border-radius: 15px;
+				background-color: #CCCCCC;
+			}
+			button:hover{
+				background-color: #218868;
+				color: #fff;
+            }
+            ::-webkit-input-placeholder { /* WebKit browsers */
+            color: #EEE5DE;
+            font-size:15px;
+            }
+
+
+            @media screen and (max-width: 500px){
+                #inputbox{
+                   width: 100vw;
+                   margin-top: 0px;
+                }
+                #logonbox{
+                   width: 100vw;
+                }
+                #loginbox{
+                   width: 100vw;
+                }
+
+            }
+		</style>
+    {% block ext_css %}{% endblock %}
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div id="content">
+        <div id="top" style="position: fixed; width:100%;">
+            <div id="user">
+                {% if request.session.userid %}
+                <a style="font-size:18px;">Hello {{request.session.userid}}!<a href="/logout/"><button class="outa">退出登录</button></a></a>
+                {% else %}
+<!--                <a href="/login/"><button id="user_b">点击登录</button></a>-->
+                <a href="/"><button id="user_b" style="font-size:18px;">中国羽毛球队视频检索</button></a>
+                {% endif %}
+                <button id="back"><a href="/">返回首页</a></button>
+            </div>
+            <div id="searchbox">
+                <form class="input" method="post">
+                    <input style="display:none" type="text" name="username" value="{{request.session.userid}}"">
+                    <input type="text" name="content" id="search_input" placeholder="全英 女单" />
+                    <button><a>搜索</a></button>
+                </form>
+            </div>
+        </div>
+        <div style="width:100%;">
+            <div id="user">
+                {% if request.session.userid %}
+                <p style="font-size:18px;">Hello {{request.session.userid}}!<a href="/logout/"><button class="outa">退出登录</button></a></p>
+                {% else %}
+                <a href="/login/"><button id="user_b" >点击登录</button></a>
+                {% endif %}
+            </div>
+
+        </div>
+        {% block container %}{% endblock %}
+    </div>
+
+
+    <script type="text/javascript" src="./jquery.min.js"></script>
+    {% block ext_js %}
+    {% endblock %}
+</body>
+</html>

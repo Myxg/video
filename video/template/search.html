@@ -1,0 +1,580 @@
+﻿{% extends "base.html" %}
+{% block title %}
+    视频搜索
+{% endblock %}
+{% block ext_css %}
+<style>
+#back{
+    display: none;
+}
+#user{
+
+    }
+#top{
+<!--        display: none;-->
+    }
+#box{
+    text-align: center;
+    }
+    #box img{
+    width: 200px;
+    height: 200px;
+}
+.image{
+    margin-right: 32px;
+    width: 15%;
+    height: 160px;
+    align-items: center;
+    justify-content: center;
+    padding:10px 10px;
+}
+.item {
+    overflow: hidden;
+    background: #ccc;
+    border-bottom: 3px solid #fff;
+    color: white;
+}
+.fl {
+    float: left;
+}
+.content {
+    padding-top: 50px;
+    font-size: 40px;
+}
+.name {
+    margin-bottom: 10px;
+}
+.time {
+    font-size: 28px;
+}
+.item:hover {
+    background-color:rgb(124, 158, 172);
+}
+.herf_box{
+    display: block;
+    width: 100%;
+    height: 24%;
+    overflow: hidden;
+    padding-left: 200px;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #EEE5DE;
+    font-size:15px;
+}
+
+@media screen and (max-width: 1000px){
+
+    #box .herf_box {
+        height:22%;
+        padding-left: 30px;
+    }
+    #box img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .content {
+        width: 50%;
+        padding-top: 50px;
+        font-size: 40px;
+        margin-left: 75px;
+    }
+    .time {
+        font-size: 30px;
+    }
+}
+@media screen and (max-width: 500px){
+
+    #box .herf_box {
+        height:22%;
+        padding-left: 0;
+    }
+    #box img{
+        width: 150px;
+        height: 150px;
+    }
+
+    .content {
+        width: 50%;
+        padding-top: 50px;
+        font-size: 25px;
+        margin-left: 60px;
+    }
+    .time {
+        font-size: 15px;
+    }
+}
+</style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+
+            <div id="searchbox">
+                <form class="input" method="post">
+                    <input style="display:none" type="text" name="username" value="{{request.session.userid}}">
+                    <input type="text" name="content" id="search_input" placeholder="全英 女单" />
+                    <button><a>搜索</a></button>
+                </form>
+            </div>
+<!--    {% for i in mlist %}-->
+<!--        <div id='box'>-->
+<!--            <div class="item">-->
+<!--                <a class="herf_box" href="/project/?name={{i.name}}">-->
+<!--                    <div class="image fl">-->
+<!--                        <img src="{{i.img}}" />-->
+<!--                    </div>-->
+<!--                    <div class="fl content">-->
+<!--                        <p class="name">{{i.name}}</p>-->
+<!--                        <p class="time">{{i.start_time}}~{{i.end_time}}</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    {% endfor %}-->
+
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=全英公开赛&year=2020">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3690/logo-colour/all_england.jpg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">全英公开赛2020</p>-->
+<!--                    <p class="time">2020-03-11~2020-03-15</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=西班牙大师赛&year=2020">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3748/logo-colour/barcelona2Artboard%201portrait.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">西班牙大师赛2020</p>-->
+<!--                    <p class="time">2020-02-18~2020-02-23</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=泰国大师赛&year=2020">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3688/logo-colour/thailand_mastersArtboard%201.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">泰国大师赛2020</p>-->
+<!--                    <p class="time">2020-01-21~2020-01-26</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=印度尼西亚大师赛&year=2020">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3752/logo-colour/indonesia_2020Artboard%201.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">印度尼西亚大师赛2020</p>-->
+<!--                    <p class="time">2020-01-14~2020-01-19</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=马来西亚大师赛&year=2020">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3687/logo-colour/malaysia_masters_2020Artboard%201.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">马来西亚大师赛2020</p>-->
+<!--                    <p class="time">2020-01-07~2020-01-12</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=总决赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3754/logo-colour/finalsArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">世界巡回赛总决赛2019</p>
+                    <p class="time">2019-12-11~2019-12-15</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=国际羽毛球锦标赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3396/logo-colour/syedArtboard%201.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">国际羽毛球锦标赛2019</p>
+                    <p class="time">2019-11-26~2019-12-01</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=韩国大师赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3370/logo-colour/korea_2019_2Artboard%201.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">韩国大师赛2019</p>
+                    <p class="time">2019-11-19~2019-11-24</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=香港公开赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3369/logo-colour/hongkong%20_1_.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">香港公开赛2019</p>-->
+<!--                    <p class="time">2019-11-12~2019-11-17</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=福州公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3519/logo-colour/fuzhouArtboard%201.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">福州公开赛2019</p>
+                    <p class="time">2019-11-05~2019-11-10</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=澳门公开赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3377/logo-colour/macau.jpg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">澳门公开赛2019</p>-->
+<!--                    <p class="time">2019-10-29~2019-11-03</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=法国公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3368/logo-colour/YIFB_LOGOTYPE_HORIZONTAL_FOND_BLANC_QUADRI.jpg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">法国公开赛2019</p>
+                    <p class="time">2019-10-22~2019-10-27</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=丹麦公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3367/logo-colour/danish_open.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">丹麦公开赛2019</p>
+                    <p class="time">2019-10-15~2019-10-20</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=韩国公开赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3365/logo-colour/2019Koreaopen_Logo.jpg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">韩国公开赛2019</p>-->
+<!--                    <p class="time">2019-09-24~2019-09-29</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=中国公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3364/logo-colour/china_open2.jpg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">中国公开赛2019</p>
+                    <p class="time">2019-09-17~2019-09-22</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=中华台北公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3362/logo-colour/taipei2Artboard%201.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">中华台北公开赛2019</p>
+                    <p class="time">2019-09-03~2019-09-08</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=世界锦标赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3447/logo-colour/WCH_logo_2019_Large_Border_01_1.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">世界锦标赛2019</p>
+                    <p class="time">2019-08-19~2019-08-25</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=泰国公开赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3360/logo-colour/_Artboard%201thailandoopen2019.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">泰国公开赛2019</p>-->
+<!--                    <p class="time">2019-07-30~2019-08-04</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=日本公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3359/logo-colour/japan_2019Artboard%201.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">日本公开赛2019</p>
+                    <p class="time">2019-07-23~2019-08-28</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=印尼公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3394/logo-colour/blibliArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">印尼公开赛2019</p>
+                    <p class="time">2019-07-16~2019-07-21</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=美国公开赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3521/logo-colour/2019Artboard%201us_open.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">美国公开赛2019</p>-->
+<!--                    <p class="time">2019-07-09~2019-07-14</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=澳大利亚公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3358/logo-colour/tp_logoArtboard%201australia2.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">澳大利亚公开赛2019</p>
+                    <p class="time">2019-06-04~2019-06-09</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=新西兰公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3357/logo-colour/lingshuiArtboard%201newzea2019.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">新西兰公开赛2019</p>
+                    <p class="time">2019-04-30~2019-05-05</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=新加坡公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3356/logo-colour/lingshuiArtboard%201singapore.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">新加坡公开赛2019</p>
+                    <p class="time">2019-04-09~2019-04-14</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=马来西亚公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3355/logo-colour/Malaysia_openArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">马来西亚公开赛2019</p>
+                    <p class="time">2019-04-02~2019-04-07</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=印度公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3392/logo-colour/lingshuiArtboard%201india_2019.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">印度公开赛2019</p>
+                    <p class="time">2019-03-26~2019-03-31</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=瑞士公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3439/logo-colour/swiss_19.gif" />
+                </div>
+                <div class="fl content">
+                    <p class="name">瑞士公开赛2019</p>
+                    <p class="time">2019-03-12~2019-03-17</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=全英羽毛球公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3376/logo-colour/all_england.jpg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">全英公开赛2019</p>
+                    <p class="time">2019-03-06~2019-03-10</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=德国公开赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3352/logo-colour/germanopenArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">德国公开赛2019</p>
+                    <p class="time">2019-02-26~2019-03-03</p>
+                </div>
+            </a>
+        </div>
+    </div>
+<!--    <div id='box'>-->
+<!--        <div class="item">-->
+<!--            <a class="herf_box" href="/project/?name=西班牙巴塞罗那大师赛&year=2019">-->
+<!--                <div class="image fl">-->
+<!--                    <img src="https://extranet.bwfbadminton.com/docs/events/3498/logo-colour/barcelona2Artboard%201portrait.svg" />-->
+<!--                </div>-->
+<!--                <div class="fl content">-->
+<!--                    <p class="name">西班牙巴塞罗那大师赛2019</p>-->
+<!--                    <p class="time">2019-02-19~2019-02-24</p>-->
+<!--                </div>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=印度尼西亚大师赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3388/logo-colour/master_indonesiaArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">印度尼西亚大师赛2019</p>
+                    <p class="time">2019-01-22~2019-01-27</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=马来西亚大师赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3351/logo-colour/malaysia2019Artboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">马来西亚大师赛2019</p>
+                    <p class="time">2019-01-15~2019-01-20</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id='box'>
+        <div class="item">
+            <a class="herf_box" href="/project/?name=泰国大师赛&year=2019">
+                <div class="image fl">
+                    <img src="https://extranet.bwfbadminton.com/docs/events/3350/logo-colour/thailand_mastersArtboard%201portrait.svg" />
+                </div>
+                <div class="fl content">
+                    <p class="name">泰国大师赛2019</p>
+                    <p class="time">2019-01-08~2019-01-13</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+
+
+{% endblock %}

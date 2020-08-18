@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}
+    登录
+{% endblock %}
+{% block ext_css %}
+    <style>
+        #user{
+            display: none;
+        }
+        #top{
+            display: none;
+        }
+        input{
+            margin-top: 40px;
+            height: 50px;
+            font-size: 20px;
+        }
+        .title{
+            font-size: 50px;
+        }
+        form button{
+            margin-top: 50px;
+        }
+        @media screen and (max-width: 500px) {
+        #loginbox{
+            width: 95%;
+        }
+
+        }
+    </style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+    <div id="loginbox">
+        <div class="title">登录</div>
+        <form class="input" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" id="username" placeholder="用户名" />
+            <br>
+            <input type="password" name="password" id="password" placeholder="密码" />
+            <br>
+            <button><a>登录</a></button>
+        </form>
+    </div>
+
+    {% for ht in ll %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+{% endblock %}

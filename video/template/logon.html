@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}
+    注册
+{% endblock %}
+{% block ext_css %}
+<style>
+
+        #top{
+            display: none;
+        }
+        input{
+            margin-top: 30px;
+            height: 50px;
+            font-size: 20px;
+        }
+        .title{
+            font-size: 50px;
+        }
+        form button{
+            margin-top: 20px;
+        }
+        @media screen and (max-width: 500px) {
+        #logonbox{
+            width: 95%;
+        }
+
+        }
+</style>
+
+{% endblock %}
+<!--<body>-->
+{% block container %}
+
+    <!--<div class="add">-->
+    <div id="logonbox">
+        <div class="title">注册</div>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="user_username" id="user_username" placeholder="用户名" />
+            <br>
+            <input type="password" name="user_password" id="user_password" placeholder="密码" />
+            <br>
+            <input list="powlist" name="user_pow" id="user_pow" placeholder="权限">
+            <datalist id="powlist">
+                    <option value="管理员">管理员</option>
+                    <option value="普通用户">普通用户</option>
+                    <option value="会员">会员</option>
+                    <option value="VIP会员">VIP会员</option>
+            </datalist>
+            <br>
+            <button><a>注册</a></button>
+        </form>
+    </div>
+
+    {% for ht in ll %}
+
+    {% endfor %}
+
+{% endblock %}
+
+
+
+{% block ext_js %}
+
+{% endblock %}
